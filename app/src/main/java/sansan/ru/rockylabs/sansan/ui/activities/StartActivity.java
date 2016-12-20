@@ -1,5 +1,6 @@
 package sansan.ru.rockylabs.sansan.ui.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,6 +21,12 @@ public class StartActivity extends AppCompatActivity implements StartActivityCal
 
     private static String TAG = "TAG";
     private FragmentManager fragmentManager;
+
+    public static void startActivity(Context context) {
+        Intent intent = new Intent(context, StartActivity.class)
+                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

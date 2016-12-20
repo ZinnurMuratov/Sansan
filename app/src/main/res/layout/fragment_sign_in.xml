@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:hint="Телефон"
             android:id="@+id/phone_input"
-            android:inputType="text" />
+            android:inputType="text|phone" />
         <android.support.v7.widget.AppCompatEditText
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_width="match_parent"

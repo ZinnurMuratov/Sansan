@@ -7,8 +7,10 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import javax.inject.Inject;
 
@@ -32,7 +34,10 @@ public class SignUpFragment extends BaseFragment implements SignUpView {
     @Bind(R.id.pass_input) protected EditText passET;
     @Bind(R.id.pass_input_confirm) protected EditText passConfirmET;
     @Bind(R.id.sign_up_btn) protected Button signUpBtn;
+    @Bind(R.id.city_spinner) protected Spinner spinner;
+    String[] CITYLIST = {"Казань","Уфа","Нижний Новгород", "Екатеринбург"};
     private ProgressDialog alertDialog;
+    private ArrayAdapter<String> arrayAdapter;
 
     @Inject
     SignUpPresenter presenter;
@@ -54,14 +59,17 @@ public class SignUpFragment extends BaseFragment implements SignUpView {
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         ButterKnife.bind(this, view);
         presenter.onCreate(this);
-        initBtn();
+        initElements();
         return view;
     }
 
-    private void initBtn(){
+    private void initElements(){
         signUpBtn.setOnClickListener(view -> presenter.validate(nameET.getText().toString(),
                 phoneET.getText().toString(),passET.getText().toString(),
                 passConfirmET.getText().toString()));
+        arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_dropdown_item_1line, CITYLIST);
+        spinner.setAdapter(arrayAdapter);
+
     }
 
 
@@ -87,5 +95,17 @@ public class SignUpFragment extends BaseFragment implements SignUpView {
     @Override
     public void navigateToMain() {
         startActivityCallback.startMainActivity();
+    }
+
+    @Override
+    public String getCity() {
+        String city = "Казань";
+        try {
+            city = spinner.getSelectedItem().toString();
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            showError("Выберите город");
+        }
+        return city;
     }
 }

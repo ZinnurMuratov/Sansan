@@ -22,4 +22,8 @@ public interface BidsView extends View {
 
     int getBidsCount();
 
+    void templateIsShowing(Boolean show);
+
+    void openBid(BidsDTO bid);
+
 }

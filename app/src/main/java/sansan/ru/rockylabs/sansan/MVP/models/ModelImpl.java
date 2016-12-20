@@ -7,7 +7,9 @@ import javax.inject.Named;
 
 import rx.Observable;
 import rx.Scheduler;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.BidsDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.EarnedResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.UserLoginResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.UserSignUpResponseDTO;
 import sansan.ru.rockylabs.sansan.api.ApiInterface;
@@ -50,9 +52,9 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public Observable<UserSignUpResponseDTO> signUp(String name, String phone, String password, String role) {
+    public Observable<UserSignUpResponseDTO> signUp(String name, String phone, String password, String role, String city) {
         return apiInterface
-                .signUp(name,phone,password,role)
+                .signUp(name,phone,password,role,city)
                 .compose(applySchedulers());
 
     }
@@ -65,9 +67,30 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public Observable<List<BidsDTO>> getBids(int page, String status) {
+    public Observable<List<BidsDTO>> getBids(int page, String status, String city) {
         return apiInterface
-                .getBids(page, Const.LIMIT, status)
+                .getBids(page, Const.LIMIT, status, city)
+                .compose(applySchedulers());
+    }
+
+    @Override
+    public Observable<EarnedResponseDTO> getGeneralEarnings(String worker) {
+        return apiInterface
+                .getGeneralRevenue(worker)
+                .compose(applySchedulers());
+    }
+
+    @Override
+    public Observable<AbsResponseDTO> createBid(String title, String phone, String city) {
+        return apiInterface
+                .createBid(title,phone,city)
+                .compose(applySchedulers());
+    }
+
+    @Override
+    public Observable<BidsDTO> updateBid(String bidId, String worker, String status) {
+        return apiInterface
+                .updateBid(bidId, worker, status)
                 .compose(applySchedulers());
     }
 

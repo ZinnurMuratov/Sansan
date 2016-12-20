@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.activities.MainActivity"
     tools:showIn="@layout/activity_main">
@@ -11,5 +12,78 @@
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+    <LinearLayout
+        android:layout_height="@dimen/_100sdp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary">
+        <LinearLayout
+            android:layout_height="match_parent"
+            android:id="@+id/new_bids"
+            android:layout_weight="1"
+            android:layout_width="@dimen/_60sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_new"
+                android:id="@+id/new_img"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/active_bids"
+            android:layout_width="@dimen/_60sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_active"
+                android:id="@+id/active_img"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:id="@+id/addNew"
+            android:layout_width="@dimen/_60sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_add_new"
+                android:id="@+id/new_bid_img"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/archive_bids"
+            android:layout_width="@dimen/_60sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_archive"
+                android:id="@+id/archive_img"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/profile"
+            android:layout_width="@dimen/_60sdp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_profile"
+                android:id="@+id/profile_img"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

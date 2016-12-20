@@ -7,9 +7,13 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.BidsDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.EarnedResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.UserLoginResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.UserSignUpResponseDTO;
 
@@ -24,7 +28,8 @@ public interface ApiInterface {
     Observable<UserSignUpResponseDTO> signUp(@Field("name") String login,
                                              @Field("phone") String phone,
                                              @Field("password") String password,
-                                             @Field("role") String role);
+                                             @Field("role") String role,
+                                             @Field("city") String city);
 
     @FormUrlEncoded
     @POST("api/v1/auth")
@@ -34,6 +39,21 @@ public interface ApiInterface {
     @GET("api/v1/bids")
     Observable<List<BidsDTO>> getBids(@Query("page") int page,
                                       @Query("per_page") int number,
-                                      @Query("status") String status);
+                                      @Query("status") String status,
+                                      @Query("city") String city);
 
+    @GET("api/v1/earned")
+    Observable<EarnedResponseDTO> getGeneralRevenue(@Query("worker") String worker);
+
+    @FormUrlEncoded
+    @POST("api/v1/bid")
+    Observable<AbsResponseDTO> createBid(@Field("title") String title,
+                                         @Field("phone") String phone,
+                                         @Field("city") String city);
+
+    @FormUrlEncoded
+    @PUT("api/v1/bid/{id}")
+    Observable<BidsDTO> updateBid(@Path("id") String bidId,
+                                  @Field("worker") String worker,
+                                  @Field("status") String status);
 }

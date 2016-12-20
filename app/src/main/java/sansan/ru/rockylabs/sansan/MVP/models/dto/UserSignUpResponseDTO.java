@@ -7,20 +7,20 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class UserSignUpResponseDTO {
-    private @SerializedName("status") String status;
+    private @SerializedName("success") Boolean success;
     private @SerializedName("message") String message;
 
-    public UserSignUpResponseDTO(String status, String message) {
-        this.status = status;
+    public UserSignUpResponseDTO(Boolean success, String message) {
+        this.success = success;
         this.message = message;
     }
 
-    public String getStatus() {
-        return status;
+    public Boolean getStatus() {
+        return success;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus(Boolean status) {
+        this.success = success;
     }
 
     public String getMessage() {

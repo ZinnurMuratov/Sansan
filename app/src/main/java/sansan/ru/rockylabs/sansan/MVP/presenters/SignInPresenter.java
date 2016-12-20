@@ -8,6 +8,7 @@ import sansan.ru.rockylabs.sansan.MVP.views.SignInView;
 import sansan.ru.rockylabs.sansan.MVP.views.SignUpView;
 import sansan.ru.rockylabs.sansan.MVP.views.View;
 import sansan.ru.rockylabs.sansan.di.App;
+import sansan.ru.rockylabs.sansan.utils.prefs.UserPrefs;
 
 /**
  * Created by Zinnur on 19.12.16.
@@ -54,6 +55,7 @@ public class SignInPresenter extends BasePresenter {
         view.hideLoading();
         if (userLoginResponseDTO.getSuccess()){
             model.storeToken(userLoginResponseDTO.getToken());
+            UserPrefs.setUser(userLoginResponseDTO.getUser());
             view.navigateToMain();
         } else {
             view.showError("Неправильный пароль");

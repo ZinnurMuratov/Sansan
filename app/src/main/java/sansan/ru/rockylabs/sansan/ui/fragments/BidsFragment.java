@@ -7,9 +7,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,16 +27,18 @@ import sansan.ru.rockylabs.sansan.R;
 import sansan.ru.rockylabs.sansan.di.App;
 import sansan.ru.rockylabs.sansan.ui.adapters.BidsAdapter;
 import sansan.ru.rockylabs.sansan.ui.base.BaseFragment;
+import sansan.ru.rockylabs.sansan.ui.base.BaseMainFragment;
 
 /**
  * Created by Zinnur on 19.12.16.
  */
-public class BidsFragment extends Fragment implements BidsView {
+public class BidsFragment extends BaseMainFragment implements BidsView {
 
     @Bind(R.id.bidsRV)
     protected RecyclerView recyclerViewBids;
     @Bind(R.id.swipeRefreshLayout)
     protected SwipeRefreshLayout swipeRefreshLayout;
+    @Bind(R.id.empty) protected TextView emptyTV;
 
     private BidsAdapter adapter;
 
@@ -58,7 +62,14 @@ public class BidsFragment extends Fragment implements BidsView {
         recyclerViewBids.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setOnRefreshListener(() -> presenter.onRefresh());
         presenter.request();
+        Log.d("back press ","yes");
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initAdapter();
     }
 
     @Override
@@ -110,13 +121,18 @@ public class BidsFragment extends Fragment implements BidsView {
 
     @Override
     public void initAdapter(List<BidsDTO> bids) {
-        adapter = new BidsAdapter(bids);
+        adapter = new BidsAdapter(bids,presenter);
         recyclerViewBids.setAdapter(adapter);
         adapter.setLoadMoreListener(() -> {
             if (getBidsCount() > 10) {
                 presenter.request();
             }
         });
+    }
+
+    private void initAdapter(){
+        adapter = new BidsAdapter(presenter);
+        recyclerViewBids.setAdapter(adapter);
     }
 
     @Override
@@ -126,5 +142,24 @@ public class BidsFragment extends Fragment implements BidsView {
         } else{
             return 0;
         }
+    }
+
+    @Override
+    public void templateIsShowing(Boolean show) {
+        if (show) {
+            emptyTV.setVisibility(View.VISIBLE);
+        } else {
+            emptyTV.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void openBid(BidsDTO bid) {
+        activityCallback.openBid(bid);
+    }
+
+    @Override
+    protected Presenter getPresenter() {
+        return presenter;
     }
 }

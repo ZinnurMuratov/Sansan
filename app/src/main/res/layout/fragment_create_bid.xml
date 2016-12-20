@@ -12,8 +12,8 @@
         <android.support.v7.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Имя"
-            android:id="@+id/name_input"
+            android:hint="Заголовок"
+            android:id="@+id/title_input"
             android:inputType="text" />
         <android.support.v7.widget.AppCompatEditText
             android:layout_marginTop="@dimen/_16sdp"
@@ -22,37 +22,18 @@
             android:hint="Телефон"
             android:id="@+id/phone_input"
             android:inputType="text|phone" />
-        <Spinner
-            android:id="@+id/city_spinner"
-            android:layout_width="fill_parent"
-            style="@style/Widget.AppCompat.Spinner.Underlined"
-            android:layout_height="wrap_content" />
-        <android.support.v7.widget.AppCompatEditText
-            android:layout_marginTop="@dimen/_16sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Пароль"
-            android:id="@+id/pass_input"
-            android:inputType="textPassword" />
-        <android.support.v7.widget.AppCompatEditText
-            android:layout_marginTop="@dimen/_16sdp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Пароль еще раз"
-            android:id="@+id/pass_input_confirm"
-            android:inputType="textPassword" />
     </LinearLayout>
 
     <Button
-        android:text="Зарегистрироваться"
+        android:text="Создать"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         style="@style/Base.Widget.AppCompat.ActionButton"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryDark"
         android:textColor="@color/colorTextIcons"
         android:fontFamily="sans-serif-condensed"
         android:textAllCaps="true"
-        android:id="@+id/sign_up_btn"
+        android:id="@+id/create_btn"
         android:textSize="@dimen/_16sdp"
         android:layout_gravity="bottom" />
 

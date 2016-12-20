@@ -6,28 +6,19 @@ import com.google.gson.annotations.SerializedName;
  * Created by Zinnur on 19.12.16.
  */
 
-public class UserLoginResponseDTO {
-    private @SerializedName("success") Boolean success;
-    private @SerializedName("token") String token;
+public class UserLoginResponseDTO extends AbsResponseDTO{
+    private @SerializedName("user") UserDTO user;
+
+    public UserLoginResponseDTO(Boolean success, String token, UserDTO user) {
+        super(success,token);
+        this.user = user;
+    }
 
     public UserLoginResponseDTO(Boolean success, String token) {
-        this.success = success;
-        this.token = token;
+        super(success,token);
     }
 
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
+    public UserDTO getUser() {
+        return user;
     }
 }

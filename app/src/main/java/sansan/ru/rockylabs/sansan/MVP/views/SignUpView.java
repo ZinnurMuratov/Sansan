@@ -7,4 +7,6 @@ package sansan.ru.rockylabs.sansan.MVP.views;
 public interface SignUpView extends View {
 
     void navigateToMain();
+
+    String getCity();
 }
