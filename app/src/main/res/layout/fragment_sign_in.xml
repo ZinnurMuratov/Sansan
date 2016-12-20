@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_16sdp">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Телефон"
+            android:id="@+id/phone_input"
+            android:inputType="text" />
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Пароль"
+            android:id="@+id/pass_input"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <Button
+        android:text="Войти"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        style="@style/Base.Widget.AppCompat.ActionButton"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/colorTextIcons"
+        android:fontFamily="sans-serif-condensed"
+        android:textAllCaps="true"
+        android:id="@+id/sign_in_btn"
+        android:textSize="@dimen/_16sdp"
+        android:layout_gravity="bottom" />
+
+
+</FrameLayout>

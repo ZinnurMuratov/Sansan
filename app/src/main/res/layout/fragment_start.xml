@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:text="Вход"
+            android:layout_height="@dimen/_50sdp"
+            style="@style/Base.Widget.AppCompat.ActionButton"
+            android:background="@color/colorPrimary"
+            android:id="@+id/sign_in_btn"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_width="@dimen/_100sdp"
+            android:textAllCaps="true"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="@dimen/_16sdp" />
+
+        <Button
+            android:text="Регистрация"
+            style="@style/Base.Widget.AppCompat.ActionButton"
+            android:background="@color/colorAccent"
+            android:layout_height="@dimen/_50sdp"
+            android:id="@+id/sign_up_btn"
+            android:fontFamily="sans-serif-condensed"
+            android:textColor="@color/colorTextIcons"
+            android:layout_weight="1"
+            android:layout_width="@dimen/_100sdp"
+            android:textAllCaps="true"
+            android:textSize="@dimen/_16sdp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_50sdp"
+        app:srcCompat="@drawable/logo"
+        android:layout_gravity="center"
+
+        android:id="@+id/imageView" />
+</FrameLayout>
