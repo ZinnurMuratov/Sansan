@@ -10,7 +10,7 @@
         android:visibility="gone"
         android:padding="@dimen/_4sdp"
         android:textColor="@color/colorSecondaryText"
-        android:text="Новых заявок нет :("
+        android:text=""
         android:textSize="@dimen/_24sdp"
         android:id="@+id/empty"/>
 

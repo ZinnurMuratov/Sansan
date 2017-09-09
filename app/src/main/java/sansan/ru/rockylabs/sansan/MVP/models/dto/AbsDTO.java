@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 /**
- * Created by Zinnur on 19.12.16.
+ * Created by Zinnur on 22.12.16.
  */
 
-public class UserSignUpResponseDTO implements Serializable{
+public class AbsDTO implements Serializable {
     private @SerializedName("success") Boolean success;
     private @SerializedName("message") String message;
 
-    public UserSignUpResponseDTO(Boolean success, String message) {
+    public AbsDTO(Boolean success, String message) {
         this.success = success;
         this.message = message;
     }
@@ -32,9 +32,5 @@ public class UserSignUpResponseDTO implements Serializable{
     public void setMessage(String message) {
         this.message = message;
     }
-
-
-
-
 
 }

@@ -5,35 +5,202 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/_16sdp"
+        android:id="@+id/textViewBlock"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
+
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="@dimen/_20sdp"
-            android:layout_margin="@dimen/_16sdp"
-            android:textColor="@color/colorAccent"
-            android:text=""
-            android:id="@+id/title_tv"/>
-        <TextView
             android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:text="Заказ: "
+                android:textColor="@color/colorDivider"
+                android:id="@+id/bid"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_19sdp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:text=""
+                android:id="@+id/bid_title"/>
+
+        </LinearLayout>
+        <LinearLayout
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="@dimen/_20sdp"
-            android:layout_margin="@dimen/_16sdp"
-            android:textColor="@color/colorAccent"
-            android:text=""
-            android:id="@+id/phone_tv"/>
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:text="Статус: "
+                android:textColor="@color/colorDivider"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_19sdp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:text=""
+                android:id="@+id/status_text"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/client_block"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:text="Клиент:"
+                android:textColor="@color/colorDivider"
+                android:id="@+id/phone"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_19sdp"
+                android:text=""
+                android:id="@+id/bid_phone"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/master_block"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/colorDivider"
+                android:text="Мастер: "
+                android:id="@+id/worker"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_19sdp"
+                android:text=""
+                android:id="@+id/worker_name"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/time_block"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:textColor="@color/colorDivider"
+                android:text="Принят: "
+                android:id="@+id/date_label"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_19sdp"
+                android:text=""
+                android:id="@+id/date"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_vertical"
+            android:id="@+id/price_block"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_16sdp"
+                android:text="Стоимость: "
+                android:textColor="@color/colorDivider"/>
+            <TextView
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_19sdp"
+                android:textStyle="bold"
+                android:textColor="@color/colorAccent"
+                android:text=""
+                android:id="@+id/price"/>
+
+        </LinearLayout>
+
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:id="@+id/buttonsBlock"
+        android:padding="@dimen/_16sdp"
         android:layout_gravity="bottom">
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_19sdp"
+            android:visibility="gone"
+            android:hint="Введите стоимость"
+            android:id="@+id/price_input"
+            android:inputType="text|phone" />
+        <Button
+            android:text="СОХРАНИТЬ"
+            android:layout_height="@dimen/_50sdp"
+            style="@style/Base.Widget.AppCompat.ActionButton"
+            android:background="@color/colorSecondaryText"
+            android:id="@+id/send_price_btn"
+            android:inputType="number"
+            android:visibility="gone"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:textAllCaps="true"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="@dimen/_16sdp" />
 
         <Button
             android:text="Позвонить"
@@ -41,8 +208,51 @@
             style="@style/Base.Widget.AppCompat.ActionButton"
             android:background="@color/colorSecondaryText"
             android:id="@+id/call_btn"
+            android:visibility="gone"
             android:fontFamily="sans-serif-condensed"
             android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:textAllCaps="true"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="@dimen/_16sdp" />
+        <Button
+            android:text="Указать стоимость"
+            android:layout_height="@dimen/_50sdp"
+            style="@style/Base.Widget.AppCompat.ActionButton"
+            android:background="@color/colorSecondaryText"
+            android:id="@+id/set_price_btn"
+            android:visibility="gone"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:textAllCaps="true"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="@dimen/_16sdp" />
+
+        <Button
+            android:text="Клиент отказался"
+            android:layout_height="@dimen/_50sdp"
+            style="@style/Base.Widget.AppCompat.ActionButton"
+            android:background="@color/colorSecondaryText"
+            android:id="@+id/cancel_btn"
+            android:visibility="gone"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:textAllCaps="true"
+            android:textColor="@color/colorTextIcons"
+            android:textSize="@dimen/_16sdp" />
+
+        <Button
+            android:text="Работа выполнена"
+            android:layout_height="@dimen/_50sdp"
+            style="@style/Base.Widget.AppCompat.ActionButton"
+            android:background="@color/colorSecondaryText"
+            android:id="@+id/worked_btn"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:textAllCaps="true"
             android:textColor="@color/colorTextIcons"
             android:textSize="@dimen/_16sdp" />
@@ -60,4 +270,16 @@
             android:textSize="@dimen/_16sdp" />
     </LinearLayout>
 
+    <TextView
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textColor="@color/colorSecondaryText"
+        android:text="Заявка уже занята другим мастером :("
+        android:id="@+id/info"/>
 </FrameLayout>

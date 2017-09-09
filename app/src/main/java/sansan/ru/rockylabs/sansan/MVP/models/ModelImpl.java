@@ -7,13 +7,14 @@ import javax.inject.Named;
 
 import rx.Observable;
 import rx.Scheduler;
-import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsResponseDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.BidsResponseDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.TokenResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.BidsDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.EarnedResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.UserLoginResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.UserSignUpResponseDTO;
 import sansan.ru.rockylabs.sansan.api.ApiInterface;
-import sansan.ru.rockylabs.sansan.api.ApiModule;
 import sansan.ru.rockylabs.sansan.di.App;
 import sansan.ru.rockylabs.sansan.utils.Const;
 import sansan.ru.rockylabs.sansan.utils.prefs.AuthPrefs;
@@ -81,16 +82,23 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public Observable<AbsResponseDTO> createBid(String title, String phone, String city) {
+    public Observable<AbsDTO> createBid(String title, String phone, String city, String date) {
         return apiInterface
-                .createBid(title,phone,city)
+                .createBid(title,phone,city, date)
                 .compose(applySchedulers());
     }
 
     @Override
-    public Observable<BidsDTO> updateBid(String bidId, String worker, String status) {
+    public Observable<BidsResponseDTO> updateBid(String bidId, String worker, String status, String date, String price) {
         return apiInterface
-                .updateBid(bidId, worker, status)
+                .updateBid(bidId, worker, status, date, price)
+                .compose(applySchedulers());
+    }
+
+    @Override
+    public Observable<AbsDTO> fcm(String userId, String token, String deviceId) {
+        return apiInterface
+                .fcm(userId,token,deviceId)
                 .compose(applySchedulers());
     }
 

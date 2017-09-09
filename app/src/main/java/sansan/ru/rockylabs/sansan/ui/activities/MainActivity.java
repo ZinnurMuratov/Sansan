@@ -1,67 +1,45 @@
 package sansan.ru.rockylabs.sansan.ui.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import android.widget.LinearLayout;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import com.tbruyelle.rxpermissions.RxPermissions;
+
+import javax.inject.Inject;
+
 import sansan.ru.rockylabs.sansan.MVP.models.dto.BidsDTO;
+import sansan.ru.rockylabs.sansan.MVP.presenters.MainPresenter;
 import sansan.ru.rockylabs.sansan.MVP.views.MainView;
 import sansan.ru.rockylabs.sansan.R;
+import sansan.ru.rockylabs.sansan.di.App;
+import sansan.ru.rockylabs.sansan.ui.base.BaseMainActivity;
+import sansan.ru.rockylabs.sansan.ui.fragments.ActiveBidsFragment;
+import sansan.ru.rockylabs.sansan.ui.fragments.ArchiveBidsFragment;
 import sansan.ru.rockylabs.sansan.ui.fragments.BidFragment;
 import sansan.ru.rockylabs.sansan.ui.fragments.BidsFragment;
 import sansan.ru.rockylabs.sansan.ui.fragments.CreateBidFragment;
 import sansan.ru.rockylabs.sansan.ui.fragments.ProfileFragment;
-import sansan.ru.rockylabs.sansan.utils.prefs.UserPrefs;
 
-public class MainActivity extends AppCompatActivity implements MainView{
+public class MainActivity extends BaseMainActivity implements MainView{
 
-    private static String TAG = "MainActivity";
-    private FragmentManager fragmentManager;
 
-    @Bind(R.id.toolbar)
-    protected Toolbar toolbar;
-
-    @Bind(R.id.new_bids) protected LinearLayout newBidsPage;
-    @Bind(R.id.active_bids) protected LinearLayout activeBidsPage;
-    @Bind(R.id.archive_bids) protected LinearLayout archiveBidsPage;
-    @Bind(R.id.profile) protected LinearLayout profilePage;
-    @Bind(R.id.addNew) protected LinearLayout addNewPage;
+    @Inject
+    MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        toolbar.setTitle("");
-        toolbar.setTitleTextColor(getResources().getColor(R.color.colorTextIcons));
-        setSupportActionBar(toolbar);
-        fragmentManager = getSupportFragmentManager();
+        App.getComponent().inject(this);
+        presenter.onCreate(this);
         initElements();
-        Fragment fragment = fragmentManager.findFragmentByTag(TAG);
-        if (fragment == null) openNewBids();
+        if (savedF == null) openNewBids();
     }
 
-    private void replaceFragment(Fragment fragment, boolean addBackStack) {
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.container, fragment, TAG);
-        if (addBackStack) transaction.addToBackStack(null);
-        transaction.commit();
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     private void initElements(){
-        if (UserPrefs.getUser().getRole().equals("admin")){
-            addNewPage.setVisibility(View.VISIBLE);
-        }
         newBidsPage.setOnClickListener(view -> openNewBids());
         activeBidsPage.setOnClickListener(view -> openActiveBids());
         archiveBidsPage.setOnClickListener(view -> openArchivedBids());
@@ -69,54 +47,78 @@ public class MainActivity extends AppCompatActivity implements MainView{
         addNewPage.setOnClickListener(view -> openCreateBidPage());
     }
 
-    private void colorController(){
-        newBidsPage.setBackgroundResource(R.color.colorPrimary);
-        activeBidsPage.setBackgroundResource(R.color.colorPrimary);
-        archiveBidsPage.setBackgroundResource(R.color.colorPrimary);
-        profilePage.setBackgroundResource(R.color.colorPrimary);
-        addNewPage.setBackgroundResource(R.color.colorPrimary);
-    }
 
     @Override
     public void openNewBids() {
+        dismissBack();
         colorController();
         newBidsPage.setBackgroundResource(R.color.colorPrimaryDark);
-        toolbar.setTitle("Новые заявки");
         replaceFragment(new BidsFragment(), false);
     }
 
     @Override
     public void openActiveBids() {
+        dismissBack();
         colorController();
         activeBidsPage.setBackgroundResource(R.color.colorPrimaryDark);
-        toolbar.setTitle("Активные заявки");
+        replaceFragment(new ActiveBidsFragment(), false);
     }
 
     @Override
     public void openArchivedBids() {
+        dismissBack();
         colorController();
         archiveBidsPage.setBackgroundResource(R.color.colorPrimaryDark);
-        toolbar.setTitle("Архив");
+        replaceFragment(new ArchiveBidsFragment(), false);
     }
 
     @Override
     public void openProfile() {
+        dismissBack();
         colorController();
         profilePage.setBackgroundResource(R.color.colorPrimaryDark);
-        toolbar.setTitle("Профиль");
         replaceFragment(new ProfileFragment(), false);
     }
 
     @Override
     public void openCreateBidPage() {
+        dismissBack();
         colorController();
         addNewPage.setBackgroundResource(R.color.colorPrimaryDark);
-        toolbar.setTitle("Создать заявку");
         replaceFragment(new CreateBidFragment(), false);
     }
 
     @Override
     public void openBid(BidsDTO bid) {
+        dismissBack();
         replaceFragment(BidFragment.newInstance(bid), true);
     }
+
+    @Override
+    public void setTitle(String title) {
+        toolbar.setTitle(title);
+    }
+
+    @Override
+    public void showError(String error) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public RxPermissions getRxPermissions() {
+        return rxPermissions;
+    }
+
+
+
 }

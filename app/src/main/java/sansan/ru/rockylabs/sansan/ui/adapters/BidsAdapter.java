@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -76,10 +77,15 @@ public class BidsAdapter extends RecyclerView.Adapter<BidsAdapter.ViewHolder> {
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.bid_title)
-        protected TextView bidTitle;
-        @Bind(R.id.cv)
-        protected CardView rootCardView;
+        @Bind(R.id.bid_title) protected TextView bidTitle;
+        @Bind(R.id.cv) protected CardView rootCardView;
+        @Bind(R.id.client_block) protected LinearLayout clientBlock;
+        @Bind(R.id.master_block) protected LinearLayout masterBlock;
+        @Bind(R.id.status_text) protected TextView status;
+        @Bind(R.id.bid_phone) protected TextView phone;
+        @Bind(R.id.worker_name) protected TextView worker;
+        @Bind(R.id.date) protected TextView date;
+        @Bind(R.id.date_label) protected TextView dateLabel;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -88,6 +94,34 @@ public class BidsAdapter extends RecyclerView.Adapter<BidsAdapter.ViewHolder> {
 
         void populate(BidsDTO bid){
             bidTitle.setText(bid.getTitle());
+            status.setText(bid.getStatus());
+            if (bid.getStatus().equals("новый")){
+                clientBlock.setVisibility(View.GONE);
+                masterBlock.setVisibility(View.GONE);
+                dateLabel.setText("Создан:");
+                date.setText(bid.getCreated());
+            } else if (bid.getStatus().equals("активный")){
+                clientBlock.setVisibility(View.VISIBLE);
+                masterBlock.setVisibility(View.VISIBLE);
+                phone.setText(bid.getPhone());
+                worker.setText(bid.getWorkerName());
+                dateLabel.setText("Принят:");
+                date.setText(bid.getSubscribed());
+            } else if (bid.getStatus().equals("выполнено")){
+                clientBlock.setVisibility(View.VISIBLE);
+                masterBlock.setVisibility(View.VISIBLE);
+                phone.setText(bid.getPhone());
+                worker.setText(bid.getWorkerName());
+                dateLabel.setText("Сделан:");
+                date.setText(bid.getClosed());
+            } else if (bid.getStatus().equals("отказ")){
+                clientBlock.setVisibility(View.VISIBLE);
+                masterBlock.setVisibility(View.VISIBLE);
+                phone.setText(bid.getPhone());
+                worker.setText(bid.getWorkerName());
+                dateLabel.setText("Отказ:");
+                date.setText(bid.getClosed());
+            }
             rootCardView.setOnClickListener(view -> {
                 presenter.openBid(bid);
             });

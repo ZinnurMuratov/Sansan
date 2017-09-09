@@ -37,7 +37,7 @@ public class BidsPresenter extends BasePresenter{
 
     public void request(){
         getView().showLoading();
-        Subscription subscription = model.getBids(getPage(),"new", getCity())
+        Subscription subscription = model.getBids(getPage(),view.getStatus(), getCity())
                 .subscribe(this::onNextGetBids, this::onError, () -> getView().hideLoading());
         addSubscription(subscription);
     }
@@ -56,7 +56,7 @@ public class BidsPresenter extends BasePresenter{
 
     public void onRefresh(){
         getView().showLoading();
-        Subscription subscription = model.getBids(getPage(),"new",getCity())
+        Subscription subscription = model.getBids(getPage(),view.getStatus(),getCity())
                 .subscribe(this::onNextRefreshBids, this::onError, () -> getView().hideLoading());
         addSubscription(subscription);
     }

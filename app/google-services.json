@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "457164518544",
+    "firebase_url": "https://sansan-767e3.firebaseio.com",
+    "project_id": "sansan-767e3",
+    "storage_bucket": "sansan-767e3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:457164518544:android:847a67cfd8cdea80",
+        "android_client_info": {
+          "package_name": "sansan.ru.rockylabs.sansan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "457164518544-aigtudiaepa9pr08s38it4h0vevklor3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtZeuH3ZXRSaHqafIP6zOy3fSbBaLIOBk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

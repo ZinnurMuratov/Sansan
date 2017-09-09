@@ -48,6 +48,7 @@ public class CreateBidFragment extends BaseMainFragment implements CreateBidView
         View view = inflater.inflate(R.layout.fragment_create_bid, container, false);
         ButterKnife.bind(this, view);
         presenter.onCreate(this);
+        activityCallback.setTitle("Создать заявку");
         initBtns();
         return view;
     }

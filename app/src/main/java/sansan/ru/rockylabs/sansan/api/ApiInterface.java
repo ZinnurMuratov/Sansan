@@ -5,13 +5,14 @@ import java.util.List;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
-import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsResponseDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.BidsResponseDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.TokenResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.BidsDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.EarnedResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.UserLoginResponseDTO;
@@ -47,13 +48,22 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("api/v1/bid")
-    Observable<AbsResponseDTO> createBid(@Field("title") String title,
-                                         @Field("phone") String phone,
-                                         @Field("city") String city);
+    Observable<AbsDTO> createBid(@Field("title") String title,
+                                 @Field("phone") String phone,
+                                 @Field("city") String city,
+                                 @Field("date") String date);
 
     @FormUrlEncoded
     @PUT("api/v1/bid/{id}")
-    Observable<BidsDTO> updateBid(@Path("id") String bidId,
-                                  @Field("worker") String worker,
-                                  @Field("status") String status);
+    Observable<BidsResponseDTO> updateBid(@Path("id") String bidId,
+                                          @Field("worker") String worker,
+                                          @Field("status") String status,
+                                          @Field("date") String date,
+                                          @Field("price") String price);
+
+    @FormUrlEncoded
+    @PUT("api/v1/fcm")
+    Observable<AbsDTO> fcm(@Field("user_id") String userId,
+                           @Field("fcm") String token,
+                           @Field("device") String deviceId);
 }

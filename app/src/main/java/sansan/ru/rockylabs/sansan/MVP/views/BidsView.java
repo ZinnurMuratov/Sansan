@@ -26,4 +26,6 @@ public interface BidsView extends View {
 
     void openBid(BidsDTO bid);
 
+    String getStatus();
+
 }

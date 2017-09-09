@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by Zinnur on 19.12.16.
  */
 
-public class UserLoginResponseDTO extends AbsResponseDTO{
+public class UserLoginResponseDTO extends TokenResponseDTO {
     private @SerializedName("user") UserDTO user;
 
     public UserLoginResponseDTO(Boolean success, String token, UserDTO user) {

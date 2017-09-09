@@ -12,4 +12,6 @@ public class PageUtil {
         page = bidsCount  / Const.LIMIT;
         return page;
     }
+
+
 }

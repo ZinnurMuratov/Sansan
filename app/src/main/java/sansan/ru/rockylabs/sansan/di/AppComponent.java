@@ -11,6 +11,7 @@ import sansan.ru.rockylabs.sansan.MVP.models.ModelImpl;
 import sansan.ru.rockylabs.sansan.MVP.presenters.BasePresenter;
 import sansan.ru.rockylabs.sansan.MVP.presenters.SplashPresenter;
 import sansan.ru.rockylabs.sansan.di.modules.GsonModule;
+import sansan.ru.rockylabs.sansan.ui.activities.MainActivity;
 import sansan.ru.rockylabs.sansan.ui.activities.SplashActivity;
 import sansan.ru.rockylabs.sansan.di.modules.ContextModule;
 import sansan.ru.rockylabs.sansan.di.modules.ModelModule;
@@ -36,13 +37,15 @@ public interface AppComponent {
 
     Gson getGson();
 
+    void inject(MainActivity a);
+
     void inject(SplashPresenter p);
 
     void inject(SplashActivity a);
 
-    void inject(ModelImpl model);
+    void inject(ModelImpl m);
 
-    void inject(BasePresenter basePresenter);
+    void inject(BasePresenter b);
 
     void inject(SignUpFragment f);
 

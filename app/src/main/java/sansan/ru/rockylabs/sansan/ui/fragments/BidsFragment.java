@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,8 @@ import sansan.ru.rockylabs.sansan.ui.adapters.BidsAdapter;
 import sansan.ru.rockylabs.sansan.ui.base.BaseFragment;
 import sansan.ru.rockylabs.sansan.ui.base.BaseMainFragment;
 
+import static com.google.android.gms.R.id.toolbar;
+
 /**
  * Created by Zinnur on 19.12.16.
  */
@@ -40,7 +43,12 @@ public class BidsFragment extends BaseMainFragment implements BidsView {
     protected SwipeRefreshLayout swipeRefreshLayout;
     @Bind(R.id.empty) protected TextView emptyTV;
 
+    private static final String NEW = "Новых заказов нет :( ";
+    private static final String STATUS = "новый";
+    private Boolean isInit = false;
+
     private BidsAdapter adapter;
+    private Toolbar toolbar;
 
     @Inject
     BidsPresenter presenter;
@@ -52,6 +60,7 @@ public class BidsFragment extends BaseMainFragment implements BidsView {
         App.getComponent().inject(this);
         super.onCreate(savedInstanceState);
         presenter.onCreate(this);
+
     }
 
     @Nullable
@@ -61,7 +70,8 @@ public class BidsFragment extends BaseMainFragment implements BidsView {
         ButterKnife.bind(this,view);
         recyclerViewBids.setLayoutManager(new LinearLayoutManager(getContext()));
         swipeRefreshLayout.setOnRefreshListener(() -> presenter.onRefresh());
-        presenter.request();
+        emptyTV.setText(NEW);
+        activityCallback.setTitle("Новые заявки");
         Log.d("back press ","yes");
         return view;
     }
@@ -69,8 +79,19 @@ public class BidsFragment extends BaseMainFragment implements BidsView {
     @Override
     public void onResume() {
         super.onResume();
-        initAdapter();
+        if (!isInit){
+            initAdapter();
+        }
+        presenter.request();
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        isInit = false;
+    }
+
+
 
     @Override
     public void showError(String error) {
@@ -128,11 +149,14 @@ public class BidsFragment extends BaseMainFragment implements BidsView {
                 presenter.request();
             }
         });
+
     }
 
     private void initAdapter(){
         adapter = new BidsAdapter(presenter);
         recyclerViewBids.setAdapter(adapter);
+        isInit = true;
+
     }
 
     @Override
@@ -156,6 +180,11 @@ public class BidsFragment extends BaseMainFragment implements BidsView {
     @Override
     public void openBid(BidsDTO bid) {
         activityCallback.openBid(bid);
+    }
+
+    @Override
+    public String getStatus() {
+        return STATUS;
     }
 
     @Override

@@ -8,11 +8,11 @@ import java.io.Serializable;
  * Created by Zinnur on 20.12.16.
  */
 
-public class AbsResponseDTO implements Serializable {
+public class TokenResponseDTO implements Serializable {
     private  @SerializedName("success") Boolean success;
     private  @SerializedName("token") String token;
 
-    public AbsResponseDTO(Boolean success, String token) {
+    public TokenResponseDTO(Boolean success, String token) {
         this.success = success;
         this.token = token;
     }

@@ -3,11 +3,12 @@ package sansan.ru.rockylabs.sansan.MVP.presenters;
 import javax.inject.Inject;
 
 import rx.Subscription;
-import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsResponseDTO;
-import sansan.ru.rockylabs.sansan.MVP.models.dto.EarnedResponseDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.TokenResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.views.CreateBidView;
 import sansan.ru.rockylabs.sansan.MVP.views.View;
 import sansan.ru.rockylabs.sansan.di.App;
+import sansan.ru.rockylabs.sansan.utils.DateUtil;
 import sansan.ru.rockylabs.sansan.utils.prefs.UserPrefs;
 
 /**
@@ -40,7 +41,7 @@ public class CreateBidPresenter extends BasePresenter {
 
     private void create(String title, String phone){
         getView().showLoading();
-        Subscription subscription = model.createBid(title,phone,getCity())
+        Subscription subscription = model.createBid(title,phone,getCity(), DateUtil.getDate())
                 .subscribe(this::onNext, this::onError, () -> getView().hideLoading());
         addSubscription(subscription);
     }
@@ -51,9 +52,9 @@ public class CreateBidPresenter extends BasePresenter {
         e.printStackTrace();
     }
 
-    public void onNext(AbsResponseDTO res){
+    public void onNext(AbsDTO res){
         view.hideLoading();
-        if (res.getSuccess()){
+        if (res.getStatus()){
             view.navigateToBidFeed();
         } else {
             view.showError("Failed");

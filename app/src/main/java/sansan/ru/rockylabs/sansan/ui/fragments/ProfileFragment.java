@@ -20,11 +20,13 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import sansan.ru.rockylabs.sansan.MVP.presenters.Presenter;
 import sansan.ru.rockylabs.sansan.MVP.presenters.ProfilePresenter;
 import sansan.ru.rockylabs.sansan.MVP.views.ProfileView;
 import sansan.ru.rockylabs.sansan.R;
 import sansan.ru.rockylabs.sansan.di.App;
 import sansan.ru.rockylabs.sansan.ui.activities.StartActivity;
+import sansan.ru.rockylabs.sansan.ui.base.BaseMainFragment;
 import sansan.ru.rockylabs.sansan.utils.prefs.AuthPrefs;
 import sansan.ru.rockylabs.sansan.utils.prefs.PrefUtils;
 import sansan.ru.rockylabs.sansan.utils.prefs.UserPrefs;
@@ -33,7 +35,7 @@ import sansan.ru.rockylabs.sansan.utils.prefs.UserPrefs;
  * Created by Zinnur on 20.12.16.
  */
 
-public class ProfileFragment extends Fragment implements ProfileView {
+public class ProfileFragment extends BaseMainFragment implements ProfileView {
     @Bind(R.id.name_tv) protected TextView nameTV;
     @Bind(R.id.city_tv) protected TextView cityTV;
     @Bind(R.id.earned_label_tv) protected TextView earnedTV;
@@ -57,6 +59,7 @@ public class ProfileFragment extends Fragment implements ProfileView {
         View view = inflater.inflate(R.layout.profile_fragment, container, false);
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         ButterKnife.bind(this,view);
+        activityCallback.setTitle("Профиль");
         presenter.onCreate(this);
         return view;
     }
@@ -123,5 +126,10 @@ public class ProfileFragment extends Fragment implements ProfileView {
     @Override
     public void hideLoading() {
 
+    }
+
+    @Override
+    protected Presenter getPresenter() {
+        return presenter;
     }
 }

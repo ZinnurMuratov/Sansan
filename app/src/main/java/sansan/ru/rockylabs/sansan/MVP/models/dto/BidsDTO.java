@@ -11,20 +11,52 @@ import java.io.Serializable;
 public class BidsDTO implements Serializable {
     @SerializedName("_id") private String id;
     @SerializedName("creator") private String creator;
+    @SerializedName("worker") private String worker;
+    @SerializedName("worker_name") private String workerName;
     @SerializedName("title") private String title;
     @SerializedName("phone") private String phone;
-    @SerializedName("sum") private Integer sum;
+    @SerializedName("price") private long sum;
     @SerializedName("status") private String status;
     @SerializedName("created") private String created;
+    @SerializedName("subscribed") private String subscribed;
+    @SerializedName("closed") private String closed;
 
-    public BidsDTO(String id, String creator, String title, String phone, Integer sum, String status, String created) {
+    public BidsDTO(String id, String creator, String worker, String workerName, String title, String phone, Integer sum, String status, String created, String subscribed, String closed) {
         this.id = id;
         this.creator = creator;
+        this.worker = worker;
+        this.workerName = workerName;
         this.title = title;
         this.phone = phone;
         this.sum = sum;
         this.status = status;
         this.created = created;
+        this.subscribed = subscribed;
+        this.closed = closed;
+    }
+
+    public String getWorker() {
+        return worker;
+    }
+
+    public void setWorker(String worker) {
+        this.worker = worker;
+    }
+
+    public String getSubscribed() {
+        return subscribed;
+    }
+
+    public void setSubscribed(String subscribed) {
+        this.subscribed = subscribed;
+    }
+
+    public String getClosed() {
+        return closed;
+    }
+
+    public void setClosed(String closed) {
+        this.closed = closed;
     }
 
     public String getId() {
@@ -59,11 +91,11 @@ public class BidsDTO implements Serializable {
         this.phone = phone;
     }
 
-    public Integer getSum() {
+    public long getSum() {
         return sum;
     }
 
-    public void setSum(Integer sum) {
+    public void setSum(long sum) {
         this.sum = sum;
     }
 
@@ -81,5 +113,13 @@ public class BidsDTO implements Serializable {
 
     public void setCreated(String created) {
         this.created = created;
+    }
+
+    public String getWorkerName() {
+        return workerName;
+    }
+
+    public void setWorkerName(String workerName) {
+        this.workerName = workerName;
     }
 }

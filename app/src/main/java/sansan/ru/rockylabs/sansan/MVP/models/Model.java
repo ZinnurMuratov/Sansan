@@ -3,7 +3,9 @@ package sansan.ru.rockylabs.sansan.MVP.models;
 import java.util.List;
 
 import rx.Observable;
-import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsResponseDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.AbsDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.BidsResponseDTO;
+import sansan.ru.rockylabs.sansan.MVP.models.dto.TokenResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.BidsDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.EarnedResponseDTO;
 import sansan.ru.rockylabs.sansan.MVP.models.dto.UserLoginResponseDTO;
@@ -23,9 +25,11 @@ public interface Model {
 
     Observable<EarnedResponseDTO> getGeneralEarnings(String worker);
 
-    Observable<AbsResponseDTO> createBid(String title, String phone, String city);
+    Observable<AbsDTO> createBid(String title, String phone, String city, String date);
 
-    Observable<BidsDTO> updateBid(String bidId, String worker, String status);
+    Observable<BidsResponseDTO> updateBid(String bidId, String worker, String status, String date, String price);
+
+    Observable<AbsDTO> fcm(String userId, String token, String deviceId);
 
     void storeToken(String token);
 }
